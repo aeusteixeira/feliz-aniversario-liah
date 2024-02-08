@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz Aniversário!</title>
+    <title>Feliz Aniversário, Liah! 🎉</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         @keyframes jump {
@@ -55,26 +55,37 @@
             <span class="emoji" style="animation-delay: .4s;">🥳</span>
             <span class="emoji" style="animation-delay: .8s;">🎈</span>
         </div>
+        <button onclick="tocarSomFogosDeArtificio()"
+            class="mt-4 bg-purple-700 text-white font-bold py-2 px-4 rounded-full hover:bg-purple-800 focus:outline-none focus:shadow-outline">
+            Iniciar Fogos de Artifício
+        </button>
     </div>
+
+    <audio id="fireworksSound" src="audio.mp3" type="audio/mp3"></audio>
 
     <script>
         function gerarConfetes() {
-            const colors = ['#ff5f40', '#ffcd56', '#4bcffa', '#34eb93', '#9b59b6']; // Cores dos confetes
+            const colors = ['#ff5f40', '#ffcd56', '#4bcffa', '#34eb93', '#9b59b6'];
             for (let i = 0; i < 100; i++) {
                 let confete = document.createElement('div');
                 confete.classList.add('confete');
                 confete.style.left = `${Math.random() * 100}%`;
                 confete.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confete.style.animationDuration = `${Math.random() * 3 + 2}s`; // Duração da animação entre 2 e 5 segundos
-                confete.style.animationDelay = `-${Math.random() * 2}s`; // Inicia em tempos diferentes
-                confete.style.width = `${Math.random() * 8 + 2}px`; // Largura variada
+                confete.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                confete.style.animationDelay = `-${Math.random() * 2}s`;
+                confete.style.width = `${Math.random() * 8 + 2}px`;
                 confete.style.height = confete.style.width;
                 confete.style.top = `${Math.random() * 100}%`;
                 document.body.appendChild(confete);
             }
         }
 
-        gerarConfetes();
+        function tocarSomFogosDeArtificio() {
+            const som = document.getElementById('fireworksSound');
+            som.play().catch(e => console.error("Erro ao reproduzir o som: ", e));
+        }
+
+        window.addEventListener('load', gerarConfetes);
     </script>
 </body>
 
