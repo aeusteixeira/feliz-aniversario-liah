@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Aniversário!</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @keyframes jump {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-25px);
+            }
+        }
+
+        .emoji {
+            animation: jump 1s infinite;
+            display: inline-block;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -10%;
+                opacity: 1;
+            }
+
+            100% {
+                top: 110%;
+                opacity: 0;
+            }
+        }
+
+        .confete {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            animation: fall linear infinite;
+        }
+    </style>
+</head>
+
+<body class="bg-pink-100 flex justify-center items-center min-h-screen overflow-hidden">
+
+    <div class="text-center p-4">
+        <p class="text-2xl md:text-4xl font-bold text-purple-700 mb-4">Feliz Aniversário, 🎉 Liah! 🎉</p>
+        <div class="text-3xl">
+            <span class="emoji" style="animation-delay: 0s;">🎂</span>
+            <span class="emoji" style="animation-delay: .4s;">🥳</span>
+            <span class="emoji" style="animation-delay: .8s;">🎈</span>
+        </div>
+    </div>
+
+    <script>
+        function gerarConfetes() {
+            const colors = ['#ff5f40', '#ffcd56', '#4bcffa', '#34eb93', '#9b59b6']; // Cores dos confetes
+            for (let i = 0; i < 100; i++) {
+                let confete = document.createElement('div');
+                confete.classList.add('confete');
+                confete.style.left = `${Math.random() * 100}%`;
+                confete.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confete.style.animationDuration = `${Math.random() * 3 + 2}s`; // Duração da animação entre 2 e 5 segundos
+                confete.style.animationDelay = `-${Math.random() * 2}s`; // Inicia em tempos diferentes
+                confete.style.width = `${Math.random() * 8 + 2}px`; // Largura variada
+                confete.style.height = confete.style.width;
+                confete.style.top = `${Math.random() * 100}%`;
+                document.body.appendChild(confete);
+            }
+        }
+
+        gerarConfetes();
+    </script>
+</body>
+
+</html>
